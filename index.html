@@ -1,7 +1,463 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
 <head>
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link rel='stylesheet' href='style.css'>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>פיצה ברסלב - פיצריה עם נשמה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&family=Amatic+SC:wght@400;700&family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+  <script src="script.js" defer></script>
 </head>
 
-<script src='script.js' defer></script>
+<body>
+  <div class="page-wrapper">
+  <button id="cart-toggle" aria-label="עגלת קניות">
+    <i class="fas fa-shopping-cart"></i>
+  </button>
+
+  <aside id="cart-sidebar">
+    <h3>ההזמנה שלך</h3>
+    <div id="cart-items"></div>
+    <div id="cart-total">סה"כ: ₪0</div>
+    <button id="order-btn">שלח הזמנה בוואטסאפ</button>
+  </aside>
+
+  <nav class="sticky-nav" id="sticky-nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo-link">
+        <img src="logo_pizza.png" alt="לוגו פיצה ברסלב" class="nav-logo">
+      </a>
+      <button class="hamburger" aria-label="פתח תפריט" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-links">
+        <li class="nav-item"><a href="#vibe" class="nav-link" data-icon="🔥">האווירה שלנו</a></li>
+        <li class="nav-item"><a href="#menu" class="nav-link" data-icon="🍕">תפריט</a></li>
+        <li class="nav-item"><a href="#gallery" class="nav-link" data-icon="📸">גלריה</a></li>
+        <li class="nav-item"><a href="#location" class="nav-link" data-icon="📍">מיקום</a></li>
+        <li class="nav-item"><a href="#review-form-section" class="nav-link" data-icon="🗣️">ביקורות</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <div class="particle-background" id="particles-js" aria-hidden="true"></div>
+
+  <header class="hero" role="banner" aria-label="ברוכים הבאים לפיצה ברסלב">
+    <div class="logo-background" aria-hidden="true"></div>
+    <img src="logo_pizza.png" alt="סמל פיצה ברסלב" class="logo-symbol lazyload" data-animate />
+    <img src="name_pizza.png" alt="טקסט פיצה ברסלב" class="logo-text lazyload" data-animate />
+    <h2 class="hero-title" data-animate>פיצה עם נשמה</h2>
+    <a class="call-button" href="tel:086727772" aria-label="התקשר להזמנה עכשיו" data-animate>
+      <i class="fas fa-pizza-slice"></i> הזמינו עכשיו: 08-6727772
+    </a>
+  </header>
+
+  <main>
+    <section id="vibe" aria-labelledby="vibe-title">
+      <div class="breslav-decor breslav-decor-left" aria-hidden="true"></div>
+      <div class="breslav-decor breslav-decor-right" aria-hidden="true"></div>
+      <div class="vibe-text" data-animate>
+        <h2 class="section-title" id="vibe-title">
+          <i class="fas fa-pizza-slice"></i> האווירה שלנו
+        </h2>
+        <p>
+          בהשראת רבי נחמן, השמחה היא הלב של פיצה ברסלב!
+          תמצאו כאן תנור לבנים בוער, ריח של בצק טרי וצחוק שממלא את החלל.
+          כמו ניגון ברסלבי, כל פיצה כאן היא סיפור של אהבה ופשטות.
+        </p>
+        <div class="breslav-art-quote" data-animate>
+          <blockquote class="art-quote">"השמחה פותחת את הלב כמו תנור חם" - רבי נחמן מברסלב</blockquote>
+        </div>
+      </div>
+      <div class="vibe-image" data-animate>
+        <img src="breslev1.jpg" alt="תנור לבנים ואנשים נהנים בפיצריה" class="lazyload" />
+      </div>
+    </section>
+
+    <section id="menu" aria-labelledby="menu-title">
+      <div class="breslav-decor breslav-decor-left" aria-hidden="true"></div>
+      <div class="breslav-decor breslav-decor-right" aria-hidden="true"></div>
+      <h2 class="section-title" id="menu-title" data-animate>
+        <i class="fas fa-utensils"></i> תפריט המנות
+      </h2>
+      <div class="menu-filter" role="radiogroup" aria-label="סינון תפריט">
+        <button class="filter-btn active" data-filter="all" aria-checked="true">הכל</button>
+        <button class="filter-btn" data-filter="pizza" aria-checked="false">פיצות</button>
+        <button class="filter-btn" data-filter="pasta" aria-checked="false">פסטות</button>
+        <button class="filter-btn" data-filter="salads" aria-checked="false">סלטים</button>
+        <button class="filter-btn" data-filter="sides" aria-checked="false">תוספות</button>
+        <button class="filter-btn" data-filter="desserts" aria-checked="false">קינוחים</button>
+      </div>
+      <div class="menu-grid" role="list" aria-label="רשימת מנות">
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="משפחות וצמחונים">
+          <div class="front">
+            <h3>פיצה אישית</h3>
+            <p>עם תוספות לבחירה</p>
+            <div class="menu-price">₪35</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="משפחות">
+          <div class="front">
+            <h3>פיצה משפחתית</h3>
+            <p>קלאסית</p>
+            <div class="menu-price">₪50</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="קבוצות גדולות">
+          <div class="front">
+            <h3>פיצה ענקית</h3>
+            <p>לחגיגות</p>
+            <div class="menu-price">₪70</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="חובבי ਪלאסיקות">
+          <div class="front">
+            <h3>פיצה ביאנקה משפחתית</h3>
+            <p>שמנת, כמהין, פסטו</p>
+            <div class="menu-price">₪65</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="חובבי טעמים מיוחדים">
+          <div class="front">
+            <h3>פיצה ביאנקה ענקית</h3>
+            <p>שמנת, כמהין, פסטו</p>
+            <div class="menu-price">₪85</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="חובבי רוזה">
+          <div class="front">
+            <h3>פיצה ברסלב משפחתית</h3>
+            <p>רוטב רוזה</p>
+            <div class="menu-price">₪65</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pizza" data-animate data-suitable="חובבי רוזה">
+          <div class="front">
+            <h3>פיצה ברסלב ענקית</h3>
+            <p>רוטב רוזה</p>
+            <div class="menu-price">₪85</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>זיתות שחורים</h3>
+            <p>תוספת לפיצה</p>
+            <div class="menu-price">₪5</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>זיתות ירוקים</h3>
+            <p>תוספת לפיצה</p>
+            <div class="menu-price">₪5</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>עגבנייה</h3>
+            <p>תוספת לפיצה</p>
+            <div class="menu-price">₪5</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>פטריות</h3>
+            <p>תוספת לפיצה</p>
+            <div class="menu-price">₪5</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>תירס</h3>
+            <p>תוספת לפיצה</p>
+            <div class="menu-price">₪5</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>טונה</h3>
+            <p>תוספת לפיצה</p>
+            <div class="menu-price">₪7</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>בולגרית</h3>
+            <p>תוספת גבינה</p>
+            <div class="menu-price">₪7</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="הוספה לפיצה">
+          <div class="front">
+            <h3>קלמטה</h3>
+            <p>זיתות קלמטה</p>
+            <div class="menu-price">₪7</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pasta" data-animate data-suitable="חובבי פסטה">
+          <div class="front">
+            <h3>רביולי בטטה/גבינה</h3>
+            <p>שמנת או רוזה</p>
+            <div class="menu-price">₪50</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="pasta" data-animate data-suitable="חובבי פסטה">
+          <div class="front">
+            <h3>פסטה לבחירה</h3>
+            <p>שמנת או רוזה</p>
+            <div class="menu-price">₪45</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="salads" data-animate data-suitable="צמחונים">
+          <div class="front">
+            <h3>סלט יווני</h3>
+            <p>חסה, בולגרית, קלמטה</p>
+            <div class="menu-price">₪40</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="sides" data-animate data-suitable="משפחות">
+          <div class="front">
+            <h3>לחם שום</h3>
+            <p>3 סוגי גבינות</p>
+            <div class="menu-price">₪30/50</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>פיצה שוקולד</h3>
+            <p>פיצה מתוקה</p>
+            <div class="menu-price">₪35</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>עוגת גבינה</h3>
+            <p>עם מחית תות</p>
+            <div class="menu-price">₪30</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>עוגת שוקולד</h3>
+            <p>חמה + גלידה</p>
+            <div class="menu-price">₪35</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>סופלה שוקולד</h3>
+            <p>עם גלידה</p>
+            <div class="menu-price">₪35</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>משולש קינדר</h3>
+            <p>עם גלידה</p>
+            <div class="menu-price">₪35</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>גבינה באסקית</h3>
+            <p>אישית</p>
+            <div class="menu-price">₪30</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+        <article class="menu-card" data-filter="desserts" data-animate data-suitable="חובבי מתוקים">
+          <div class="front">
+            <h3>גבינה באסקית</h3>
+            <p>עם שוקולד חם</p>
+            <div class="menu-price">₪30</div>
+            <button class="add-to-cart-btn" aria-label="הוסף לעגלה">🛒 הוסף לעגלה</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="gallery" aria-labelledby="gallery-title">
+      <div class="breslav-decor breslav-decor-left" aria-hidden="true"></div>
+      <div class="breslav-decor breslav-decor-right" aria-hidden="true"></div>
+      <h2 class="section-title" id="gallery-title" data-animate>
+        <i class="fas fa-camera" id="our-works-title"></i> היצירות שלנו
+      </h2>
+      <div class="gallery-container">
+        <div class="gallery-grid">
+          <figure class="gallery-item" data-animate>
+            <img data-src="pizza_1.jpg" alt="פיצה מרגריטה בסטייל ביתי" class="lazyload" />
+          </figure>
+          <figure class="gallery-item" data-animate>
+            <img data-src="pizza_2.jpg" alt="פיצה עם תוספות שוות" class="lazyload" />
+          </figure>
+          <figure class="gallery-item" data-animate>
+            <img data-src="pizza_5.jpg" alt="פיצה מיוחדת עם תוספות שוות" class="lazyload" />
+          </figure>
+          <figure class="gallery-item" data-animate>
+            <img data-src="pizza_3.jpg" alt="פיצה חמה מהתנור" class="lazyload" />
+          </figure>
+          <figure class="gallery-item" data-animate>
+            <img data-src="pizza_4.jpg" alt="פיצה טרייה על מגש" class="lazyload" />
+          </figure>
+          <figure class="gallery-item" data-animate>
+            <img data-src="pizza_6.jpg" alt="פיצה בתנור לבנים" class="lazyload" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" aria-label="מפת מיקום פיצה ברסלב">
+      <div class="breslav-decor breslav-decor-left" aria-hidden="true"></div>
+      <div class="breslav-decor breslav-decor-right" aria-hidden="true"></div>
+      <h2 class="section-title" id="location-title" data-animate>
+        <i class="fas fa-map-marker-alt" id="where-are-we-title"></i> איפה אנחנו?
+      </h2>
+      <p class="location-address" data-animate>רחוב החשמונאים 15, נחל עשן, באר שבע</p>
+      <div id="map-container" role="region" aria-live="polite" data-animate>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d852.5942527097152!2d34.764022830354534!3d31.26566519839572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x150265daaea01a97%3A0xa159e31cb4bbffae!2z15TXl9ep157Xldeg15DXmdedIDE1LCDXkdeQ16gg16nXkdei!5e0!3m2!1siw!2sil!4v1750667776730!5m2!1siw!2sil"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" aria-label="מפה של פיצה ברסלב עם מסלול לרחוב החשמונאים 15, נחל עשן, באר שבע">
+        </iframe>
+      </div>
+    </section>
+
+    <section id="review-form-section" aria-labelledby="review-form-title">
+      <div class="breslav-decor breslav-decor-left" aria-hidden="true"></div>
+      <div class="breslav-decor breslav-decor-right" aria-hidden="true"></div>
+      <h2 class="section-title" id="review-form-title" data-animate>
+        <i class="fas fa-comment"></i> רוצה לכתוב ביקורת?
+      </h2>
+      <div class="breslav-art-quote" data-animate>
+        <blockquote class="art-quote">"שתף את השמחה, ותכפיל אותה!" - רבי נחמן מברסלב</blockquote>
+      </div>
+      <form id="review-form" novalidate data-animate>
+        <div class="form-group">
+          <label for="name">שם מלא:</label>
+          <input type="text" id="name" name="name" placeholder="השם שלך" required aria-required="true" />
+        </div>
+        <div class="form-group">
+          <label for="phone">מספר טלפון:</label>
+          <input type="tel" id="phone" name="phone" placeholder="מספר הטלפון שלך" required aria-required="true"
+            pattern="[0-9]{9,}" />
+        </div>
+        <div class="form-group">
+          <label for="review">הביקורת שלך:</label>
+          <textarea id="review" name="review" rows="5" placeholder="כתוב כאן את הביקורת שלך..." required
+            aria-required="true"></textarea>
+        </div>
+        <button type="submit" aria-label="שלח ביקורת">שלח ביקורת</button>
+      </form>
+      <p id="thank-you-message" style="display:none; color:#d35400; text-align:center; margin-top:1rem; font-weight:700;">
+        תודה! הביקורת נשלחה בהצלחה
+      </p>
+    </section>
+  </main>
+<br><br>
+    <footer>
+      <div class="breslav-decor breslav-decor-left" aria-hidden="true"></div>
+      <div class="breslav-decor breslav-decor-right" aria-hidden="true"></div>
+      <div class="footer-content">
+        <div>
+          <h3><i class="fas fa-pizza-slice"></i> פיצה ברסלב</h3>
+          <p>
+            רחוב החשמונאים 15, נחל עשן, באר שבע<br>
+            טלפון: <a href="tel:086727772">08-6727772</a><br>
+            מייל: <a href="mailto:info@breslavpizza.co.il">info@breslavpizza.co.il</a>
+          </p>
+        </div>
+
+        <div>
+          <h3><i class="fas fa-clock"></i> שעות פתיחה</h3>
+          <p>
+            א'-ה': 12:00 - 23:00<br>
+            ו': 12:00 - 01:00<br>
+            שבת: סגור
+          </p>
+        </div>
+
+        <div>
+          <h3><i class="fas fa-share-alt"></i> עקבו אחרינו</h3>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/pizzabreslev/" target="_blank" aria-label="אינסטגרם">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.instagram.com/pizzabreslev/" target="_blank" aria-label="פייסבוק">
+              <i class="fab fa-facebook"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-quote">
+        <blockquote class="art-quote">"הכל לטובה, גם כשנראה אחרת" - רבי נחמן מברסלב</blockquote>
+        <p class="hebrew-calligraphy small">פיצה ברסלב - שמחה בכל ביס</p>
+      </div>
+
+      <div class="copyright">
+        © כל הזכויות שמורות לפיצה ברסלב 2025 🍕
+      </div>
+    </footer>
+
+
+
+
+  <div id="toppings-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-content upgraded">
+      <h3>איזה תוספות בא לך על הפיצה? 🍕</h3>
+      <form id="toppings-form">
+        <div class="toppings-options">
+          <label class="topping-box"><input type="checkbox" name="topping" value="זיתים שחורים"> זיתים שחורים</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="זיתים ירוקים"> זיתים ירוקים</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="עגבניה"> עגבניה</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="פטריות"> פטריות</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="תירס"> תירס</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="טונה"> טונה</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="גבינה בולגרית"> גבינה בולגרית</label>
+          <label class="topping-box"><input type="checkbox" name="topping" value="זיתי קלמטה"> זיתי קלמטה</label>
+        </div>
+        <div class="modal-actions">
+          <button type="submit" id="add-toppings-btn">הוסף לעגלה</button>
+          <button type="button" id="cancel-toppings" class="cancel">בטל</button>
+        </div>
+      </form>
+    </div>
+  </div>
+    
+</body>
+</html>
+    
